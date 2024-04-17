@@ -18,23 +18,31 @@
     <header class="container">
       <div class="row">
         <div class="col-md-12">
-          <h1 class="text-center">BlueStep Assessment</h1>
+          <h1 class="text-center text-primary font-weight-bold">BlueStep Assessment</h1>
         </div>
       </div>
     </header>
     <main class="container">
       <div class="row p-5">
-        <div class="col-md-12">
-          <form id="signUpForm" class="col-8 mx-auto">
-            <h2 class="text-center mb-5">Sign Up</h2>
-            <fieldset class="form-group border rounded p-4 mb-4">
-              <legend class="w-auto px-2 mb-0">Account Credentials</legend>
+        <div
+          class="mx-auto col-md-10 border-secondary"
+          style="border: 2px solid black; border-radius: 12px"
+        >
+          <form id="signUpForm" class="col-8 mx-auto pb-4">
+            <h2 class="my-4 font-weight-bold">Sign Up</h2>
+            <fieldset
+              class="text-secondary form-group border border-secondary rounded p-4 mb-4"
+              style="background-color: #ddd"
+            >
+              <legend class="w-auto px-2 mb-0 border rounded border-secondary bg-white">
+                Account Credentials
+              </legend>
 
               <div class="form-group">
                 <label for="email">Email</label>
                 <input
                   type="email"
-                  class="form-control"
+                  class="form-control border-info"
                   id="email"
                   placeholder="Enter your email"
                   required
@@ -45,7 +53,7 @@
                 <label for="password">Password</label>
                 <input
                   type="password"
-                  class="form-control"
+                  class="form-control border-info"
                   id="password"
                   placeholder="Enter your password"
                   required
@@ -56,7 +64,7 @@
                 <label for="confirmPassword">Confirm Password</label>
                 <input
                   type="password"
-                  class="form-control"
+                  class="form-control border-info"
                   id="confirmPassword"
                   placeholder="Confirm your password"
                   required
@@ -64,14 +72,19 @@
               </div>
             </fieldset>
 
-            <fieldset class="form-group border rounded p-4 mb-4">
-              <legend class="w-auto px-2 mb-0">Personal & Contact Information</legend>
+            <fieldset
+              class="text-secondary form-group border border-secondary rounded p-4 mb-4"
+              style="background-color: #ddd"
+            >
+              <legend class="w-auto px-2 mb-0 border rounded border-secondary bg-white">
+                Personal & Contact Information
+              </legend>
 
               <div class="form-group">
                 <label for="name">First Name</label>
                 <input
                   type="text"
-                  class="form-control"
+                  class="form-control border-info"
                   id="name"
                   placeholder="Enter your name"
                   required
@@ -82,7 +95,7 @@
                 <label for="lastName">Last Name</label>
                 <input
                   type="text"
-                  class="form-control"
+                  class="form-control border-info"
                   id="lastName"
                   placeholder="Enter your last name"
                   required
@@ -93,7 +106,7 @@
                 <label for="phone">Phone</label>
                 <input
                   type="tel"
-                  class="form-control"
+                  class="form-control border-info"
                   id="phone"
                   placeholder="Enter your phone number"
                   required
@@ -104,7 +117,7 @@
                 <label for="address">Address</label>
                 <input
                   type="text"
-                  class="form-control"
+                  class="form-control border-info"
                   id="address"
                   placeholder="Enter your address"
                   required
@@ -115,7 +128,7 @@
                 <label for="emergencyContact">Emergency Contact</label>
                 <input
                   type="text"
-                  class="form-control"
+                  class="form-control border-info"
                   id="emergencyContact"
                   placeholder="Enter your emergency contact"
                   required
@@ -123,19 +136,29 @@
               </div>
             </fieldset>
 
-            <fieldset class="form-group border rounded p-4 mb-4">
-              <legend class="w-auto px-2 mb-0">Demographics</legend>
+            <fieldset
+              class="text-secondary form-group border border-secondary rounded p-4 mb-4"
+              style="background-color: #ddd"
+            >
+              <legend class="w-auto px-2 mb-0 border rounded border-secondary bg-white">
+                Demographics
+              </legend>
 
               <div class="form-group">
                 <label for="age">Age</label>
-                <input type="number" class="form-control" id="age" placeholder="Enter your age" />
+                <input
+                  type="number"
+                  class="form-control border-info"
+                  id="age"
+                  placeholder="Enter your age"
+                />
               </div>
 
               <div class="form-group">
                 <label for="dob">Date of Birth</label>
                 <input
                   type="date"
-                  class="form-control"
+                  class="form-control border-info"
                   id="dob"
                   placeholder="Enter your date of birth"
                 />
@@ -147,11 +170,11 @@
         </div>
       </div>
     </main>
-    <footer class="fixed-bottom">
+    <footer class="bg-primary p-4">
       <div class="container">
         <div class="row">
           <div class="col-md-12">
-            <p class="text-center">by Fernando Chazarreta</p>
+            <p class="text-center m-0 text-white h4">by Fernando Chazarreta</p>
           </div>
         </div>
       </div>
