@@ -1,15 +1,40 @@
 import { mockAPICreate, mockAPISave } from "./mockAPI.js";
+import {
+  handleEmailInput,
+  handlePasswordMatch,
+  handleSubmitButton,
+  disableRequiredFields,
+} from "./validation.js";
+import { parseFormToJSON } from "./utils.js";
 
 function main() {
   // Disable required fields for the sign-up form for testing purposes
   disableRequiredFields();
 
-  // This demonstrates custom validation
-  handleEmailInput();
-  handlePasswordMatch();
-  handleSubmitButton();
-
   const signUpForm = document.getElementById("sign-up-form");
+
+  // Next code block demonstrates custom validation. Commented out because it's not used in the final version
+  // Uncomment to test
+
+  /*
+  const emailInput = document.getElementById("email");
+  const emailError = document.getElementById("email-error");
+  handleEmailInput(emailInput, emailError);
+
+  const passwordInput = document.getElementById("password");
+  const passwordConfirmationInput = document.getElementById("password-confirmation");
+  const passwordError = document.getElementById("password-error");
+  const passwordConfirmationError = document.getElementById("password-confirmation-error");
+  handlePasswordMatch(
+    passwordInput,
+    passwordConfirmationInput,
+    passwordError,
+    passwordConfirmationError
+  );
+
+  handleSubmitButton(signUpForm);
+  */
+
   handleFormSubmit(signUpForm);
 }
 
@@ -31,25 +56,24 @@ function handleFormSubmit(signUpForm) {
     try {
       const createUserResponse = await mockAPICreate(JSONFormData);
       console.log(createUserResponse);
+      alert(createUserResponse.message);
     } catch (error) {
+      alert(error.message);
       console.error(error);
     }
 
     try {
       const saveUserResponse = await mockAPISave(JSONFormData);
       console.log(saveUserResponse);
+      alert(saveUserResponse.message);
     } catch (error) {
+      alert(error.message);
       console.error(error);
     }
   });
 }
 
-function parseFormToJSON(form) {
-  const formData = new FormData(form);
-  const JSONFormData = Object.fromEntries(formData.entries());
-  return JSONFormData;
-}
-
+// Function to demonstrate a real API call. Not used in the final version
 async function signUpUser(data) {
   const API_URL = "https://domain.com/api/v1/users";
   const API_HEADERS = {
@@ -72,105 +96,6 @@ async function signUpUser(data) {
   } catch (error) {
     throw error; // This rethrows the error so that the caller can handle it
   }
-}
-
-function disableRequiredFields() {
-  const signUpForm = document.getElementById("sign-up-form");
-
-  const formFields = [
-    "address",
-    "email",
-    "emergency-contact",
-    "last-name",
-    "name",
-    "password",
-    "password-confirmation",
-    "phone",
-  ];
-
-  formFields.forEach((field) => signUpForm[field].removeAttribute("required"));
-}
-
-function emailValidation(email) {
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  return emailRegex.test(email);
-}
-
-/**
- * Function to demonstrate custom validation for email input
- */
-function handleEmailInput() {
-  const emailInput = document.getElementById("email");
-  const emailError = document.getElementById("email-error");
-
-  emailInput.addEventListener("input", (e) => {
-    const email = e.target.value;
-
-    if (!emailValidation(email)) {
-      emailError.textContent = "Please enter a valid email address";
-      emailError.style.display = "block";
-    } else {
-      emailError.textContent = "";
-    }
-  });
-}
-
-function handlePasswordMatch() {
-  const passwordInput = document.getElementById("password");
-  const passwordConfirmationInput = document.getElementById("password-confirmation");
-  const passwordError = document.getElementById("password-error");
-  const passwordConfirmationError = document.getElementById("password-confirmation-error");
-
-  passwordInput.addEventListener("input", (e) => {
-    const password = e.target.value;
-    const passwordConfirmation = passwordConfirmationInput.value;
-
-    if (password !== passwordConfirmation) {
-      passwordError.textContent = "Passwords do not match";
-      passwordError.style.display = "block";
-    } else {
-      passwordError.textContent = "";
-      passwordConfirmationError.textContent = "";
-    }
-  });
-
-  passwordConfirmationInput.addEventListener("input", (e) => {
-    const password = passwordInput.value;
-    const passwordConfirmation = e.target.value;
-
-    if (password !== passwordConfirmation) {
-      passwordConfirmationError.textContent = "Passwords do not match";
-      passwordConfirmationError.style.display = "block";
-    } else {
-      passwordConfirmationError.textContent = "";
-      passwordError.textContent = "";
-    }
-  });
-}
-
-function handleSubmitButton() {
-  const form = document.getElementById("sign-up-form");
-
-  const submitButton = document.getElementById("submit-btn");
-
-  const emailInput = document.getElementById("email");
-  const nameInput = document.getElementById("name");
-
-  const passwordInput = document.getElementById("password");
-  const passwordConfirmationInput = document.getElementById("password-confirmation");
-
-  form.addEventListener("input", (e) => {
-    const email = emailInput.value;
-    const name = nameInput.value;
-    const password = passwordInput.value;
-    const passwordConfirmation = passwordConfirmationInput.value;
-
-    if (email && name && password && passwordConfirmation && password === passwordConfirmation) {
-      submitButton.removeAttribute("disabled");
-    } else {
-      submitButton.setAttribute("disabled", true);
-    }
-  });
 }
 
 main();
