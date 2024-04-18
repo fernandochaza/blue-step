@@ -1,3 +1,5 @@
+import { mockAPICreate, mockAPISave } from "./mockAPI.js";
+
 function main() {
   // Disable required fields for the sign-up form for testing purposes
   disableRequiredFields();
@@ -13,18 +15,37 @@ function handleFormSubmit(signUpForm) {
   signUpForm.addEventListener("submit", async (e) => {
     e.preventDefault();
 
-    const formData = new FormData(e.target);
-    const JSONFormData = Object.fromEntries(formData.entries());
+    const JSONFormData = parseFormToJSON(signUpForm);
+
+    // try {
+    //   const signUpResponse = await signUpUser(JSONFormData);
+    //   console.log(signUpResponse);
+    // } catch (error) {
+    //   console.log("This request failed because it is a fake call. This is the form data: ");
+    //   console.log(JSONFormData);
+    //   console.error(error); // Here we could handle errors that aren't related to the API response
+    // }
 
     try {
-      const signUpResponse = await signUpUser(JSONFormData);
-      console.log(signUpResponse);
+      const createUserResponse = await mockAPICreate(JSONFormData);
+      console.log(createUserResponse);
     } catch (error) {
-      console.log("This request failed because it is a fake call. This is the form data: ");
-      console.log(JSONFormData);
-      console.error(error); // Here we could handle errors that aren't related to the API response
+      console.error(error);
+    }
+
+    try {
+      const saveUserResponse = await mockAPISave(JSONFormData);
+      console.log(saveUserResponse);
+    } catch (error) {
+      console.error(error);
     }
   });
+}
+
+function parseFormToJSON(form) {
+  const formData = new FormData(form);
+  const JSONFormData = Object.fromEntries(formData.entries());
+  return JSONFormData;
 }
 
 async function signUpUser(data) {
@@ -90,10 +111,6 @@ function handleEmailInput() {
       emailError.textContent = "";
     }
   });
-}
-
-function mockAPI() {
-  
 }
 
 main();
