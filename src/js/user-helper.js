@@ -9,7 +9,6 @@ export class UserHelper {
   }
 
   save(user) {
-    // Save user to database verifying required fields
     const requiredFields = ["email", "name"];
     const missingFields = [];
 
@@ -23,7 +22,6 @@ export class UserHelper {
       throw new Error(`Missing required fields when saving user: ${missingFields.join(", ")}`);
     }
 
-    // Save user to database
     return { result: true, message: "User saved successfully" };
   }
 }

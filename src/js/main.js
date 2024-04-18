@@ -6,6 +6,8 @@ function main() {
 
   // This demonstrates custom validation
   handleEmailInput();
+  handlePasswordMatch();
+  handleSubmitButton();
 
   const signUpForm = document.getElementById("sign-up-form");
   handleFormSubmit(signUpForm);
@@ -109,6 +111,64 @@ function handleEmailInput() {
       emailError.style.display = "block";
     } else {
       emailError.textContent = "";
+    }
+  });
+}
+
+function handlePasswordMatch() {
+  const passwordInput = document.getElementById("password");
+  const passwordConfirmationInput = document.getElementById("password-confirmation");
+  const passwordError = document.getElementById("password-error");
+  const passwordConfirmationError = document.getElementById("password-confirmation-error");
+
+  passwordInput.addEventListener("input", (e) => {
+    const password = e.target.value;
+    const passwordConfirmation = passwordConfirmationInput.value;
+
+    if (password !== passwordConfirmation) {
+      passwordError.textContent = "Passwords do not match";
+      passwordError.style.display = "block";
+    } else {
+      passwordError.textContent = "";
+      passwordConfirmationError.textContent = "";
+    }
+  });
+
+  passwordConfirmationInput.addEventListener("input", (e) => {
+    const password = passwordInput.value;
+    const passwordConfirmation = e.target.value;
+
+    if (password !== passwordConfirmation) {
+      passwordConfirmationError.textContent = "Passwords do not match";
+      passwordConfirmationError.style.display = "block";
+    } else {
+      passwordConfirmationError.textContent = "";
+      passwordError.textContent = "";
+    }
+  });
+}
+
+function handleSubmitButton() {
+  const form = document.getElementById("sign-up-form");
+
+  const submitButton = document.getElementById("submit-btn");
+
+  const emailInput = document.getElementById("email");
+  const nameInput = document.getElementById("name");
+
+  const passwordInput = document.getElementById("password");
+  const passwordConfirmationInput = document.getElementById("password-confirmation");
+
+  form.addEventListener("input", (e) => {
+    const email = emailInput.value;
+    const name = nameInput.value;
+    const password = passwordInput.value;
+    const passwordConfirmation = passwordConfirmationInput.value;
+
+    if (email && name && password && passwordConfirmation && password === passwordConfirmation) {
+      submitButton.removeAttribute("disabled");
+    } else {
+      submitButton.setAttribute("disabled", true);
     }
   });
 }

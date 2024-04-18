@@ -61,6 +61,7 @@
                   placeholder="Enter your password"
                   required
                 />
+                <div class="invalid-feedback" id="password-error"></div>
               </div>
 
               <div class="form-group">
@@ -73,6 +74,7 @@
                   placeholder="Confirm your password"
                   required
                 />
+                <div class="invalid-feedback" id="password-confirmation-error"></div>
               </div>
             </fieldset>
 
@@ -176,7 +178,7 @@
               </div>
             </fieldset>
 
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button disabled id="submit-btn" type="submit" class="btn btn-primary">Submit</button>
           </form>
         </div>
       </div>
